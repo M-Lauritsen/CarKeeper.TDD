@@ -17,6 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CarKeeper.API\CarKeeper.API.csproj" />
+    <ProjectReference Include="..\CarKeeper.Application\CarKeeper.Application.csproj" />
+    <ProjectReference Include="..\CarKeeper.Domain\CarKeeper.Domain.csproj" />
+    <ProjectReference Include="..\CarKeeper.Infrastructure\CarKeeper.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 
