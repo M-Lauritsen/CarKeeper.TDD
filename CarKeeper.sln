@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarKeeper.API", "CarKeeper.API\CarKeeper.API.csproj", "{ACA9DF22-58FF-4F1A-A16D-4721A503BD5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACA9DF22-58FF-4F1A-A16D-4721A503BD5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACA9DF22-58FF-4F1A-A16D-4721A503BD5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACA9DF22-58FF-4F1A-A16D-4721A503BD5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACA9DF22-58FF-4F1A-A16D-4721A503BD5E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AEACAE3A-CEBC-4E55-ADB5-426E7BF13634}
+	EndGlobalSection
+EndGlobal
