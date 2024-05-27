@@ -12,7 +12,7 @@ public class GarageService(IVehicleRepository vehicleRepository, ICustomerReposi
     public void AddCustomer(Customer customer)
     {
         customerRepository.Add(customer);
-        if (customer.Cars.Count > 1)
+        if (customer.Cars.Any())
         {
             vehicleRepository.AddRange(customer.Cars);
         }
@@ -26,7 +26,11 @@ public class GarageService(IVehicleRepository vehicleRepository, ICustomerReposi
 
     public void DeleteCustomer(Customer customer)
     {
-        vehicleRepository.Remove(customer);
+        if (customer.Cars.Any()) 
+        { 
+            vehicleRepository.RemoveCars(customer.Cars);
+        }
+        customerRepository.DeleteCustomer(customer);
     }
 
     public IEnumerable<Car> GetAllCars()

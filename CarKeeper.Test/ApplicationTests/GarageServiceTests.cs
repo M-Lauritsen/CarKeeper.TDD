@@ -45,7 +45,7 @@ public class GarageServiceTests
 
         //Assert
         _customerRepository.Verify(repo => repo.Add(customer), Times.Once);
-        _vehicleRepository.Verify(repo => repo.Add(car), Times.Once);
+        _vehicleRepository.Verify(repo => repo.AddRange(customer.Cars), Times.Once);
     }
 
     [Fact]
@@ -64,5 +64,38 @@ public class GarageServiceTests
         //Assert
         _customerRepository.Verify(repo => repo.Add(customer), Times.Once);
         _vehicleRepository.Verify(repo => repo.AddRange(customer.Cars), Times.Once);
+    }
+
+    [Fact]
+    public void CanDeleteUser()
+    {
+        //Arrange 
+        var customer = new Customer("John", "doe@mail.com");
+        _garageService.AddCustomer(customer);
+
+        //Act
+        _garageService.DeleteCustomer(customer);
+
+        //Assert
+        _customerRepository.Verify(repo => repo.DeleteCustomer(customer), Times.Once);
+    }
+
+    [Fact]
+    public void CanDeleteUserWithCars()
+    {
+        //Arrange 
+        var customer = new Customer("John", "doe@mail.com");
+        var car1 = new Car("Tesla", "Model 3", "AA12345");
+        var car2 = new Car("Tesla", "Model 2", "AA12345");
+        customer.AddCar(car1);
+        customer.AddCar(car2);
+        _garageService.AddCustomer(customer);
+
+        //Act
+        _garageService.DeleteCustomer(customer);
+
+        //Assert
+        _customerRepository.Verify(repo => repo.DeleteCustomer(customer), Times.Once);
+        _vehicleRepository.Verify(repo => repo.RemoveCars(customer.Cars), Times.Once);
     }
 }
