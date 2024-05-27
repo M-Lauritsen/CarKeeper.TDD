@@ -18,9 +18,9 @@ public class Customer
 
     public void AddCar(Car car)
     {
-        if (car.Owner != this)
+        if (car.Customer != this)
         {
-            car.Owner = this;
+            car.Customer = this;
         }
 
         Cars.Add(car);

@@ -24,6 +24,11 @@ public class GarageService(IVehicleRepository vehicleRepository, ICustomerReposi
         vehicleRepository.Add(car);
     }
 
+    public void CheckoutCar(Car car)
+    {
+        vehicleRepository.CheckoutCar(car);
+    }
+
     public void DeleteCustomer(Customer customer)
     {
         if (customer.Cars.Any()) 

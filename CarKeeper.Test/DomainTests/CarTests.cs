@@ -25,10 +25,10 @@ public class CarTests
         var car = new Car("Tesla", "Model 3", "AA12345");
 
         //Act
-        car.Owner = owner;
+        car.Customer = owner;
 
         //Assert
-        Assert.Equal(owner, car.Owner);
+        Assert.Equal(owner, car.Customer);
     }
 
     [Fact]
@@ -42,6 +42,6 @@ public class CarTests
         owner.AddCar(car);
 
         // Assert
-        Assert.Equal(owner, car.Owner);
+        Assert.Equal(owner, car.Customer);
     }
 }

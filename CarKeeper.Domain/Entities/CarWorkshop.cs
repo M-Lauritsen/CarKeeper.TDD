@@ -16,10 +16,10 @@ public class CarWorkshop
 
     public void AddCar(Car car)
     {
-        if (car is not null && car.Owner != null) 
+        if (car is not null && car.Customer != null) 
         {
             Cars.Add(car);
-            AddCustomer(car.Owner);
+            AddCustomer(car.Customer);
         }
     }
 

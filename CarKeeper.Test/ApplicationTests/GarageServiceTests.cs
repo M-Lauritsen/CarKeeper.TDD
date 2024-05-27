@@ -98,4 +98,22 @@ public class GarageServiceTests
         _customerRepository.Verify(repo => repo.DeleteCustomer(customer), Times.Once);
         _vehicleRepository.Verify(repo => repo.RemoveCars(customer.Cars), Times.Once);
     }
+
+    [Fact]
+    public void CanRemoveCarFromGarageWithoutRemovingUser()
+    {
+        //Arrange 
+        var customer = new Customer("John", "doe@mail.com");
+        var car1 = new Car("Tesla", "Model 3", "AA12345");
+        var car2 = new Car("Tesla", "Model 2", "AA12345");
+        customer.AddCar(car1);
+        customer.AddCar(car2);
+        _garageService.AddCustomer(customer);
+
+        //Act
+        _garageService.CheckoutCar(customer.Cars[1]);
+
+        //Assert
+        _vehicleRepository.Verify(repo => repo.CheckoutCar(customer.Cars[1]), Times.Once);
+    }
 }
