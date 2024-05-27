@@ -38,6 +38,18 @@ public class GarageService(IVehicleRepository vehicleRepository, ICustomerReposi
         customerRepository.DeleteCustomer(customer);
     }
 
+    public Car? FindCarByLicensePlate(string licensePlate)
+    {
+        var car = vehicleRepository.GetByLicensePlate(licensePlate);
+        return car;
+    }
+
+    public List<Car> FindCarByOwnerEmail(string email)
+    {
+        var customer = customerRepository.GetByEmail(email);
+        return customer.Cars;
+    }
+
     public IEnumerable<Car> GetAllCars()
     {
         throw new NotImplementedException();

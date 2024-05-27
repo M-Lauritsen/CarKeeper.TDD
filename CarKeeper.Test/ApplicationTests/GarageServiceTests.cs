@@ -116,4 +116,39 @@ public class GarageServiceTests
         //Assert
         _vehicleRepository.Verify(repo => repo.CheckoutCar(customer.Cars[1]), Times.Once);
     }
+
+    [Fact]
+    public void CanFindCarByLicensePlate()
+    {
+        // Arrange
+        var car = new Car("Tesla", "Model S", "AB12345");
+        _vehicleRepository.Setup(repo => repo.GetByLicensePlate("AB12345")).Returns(car);
+
+        // Act
+        var result = _garageService.FindCarByLicensePlate("AB12345");
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal("Tesla", result.Manifacture);
+        Assert.Equal("Model S", result.Model);
+    }
+
+    [Fact]
+    public void CanFindCarsByOwnerEmail()
+    {
+        // Arrange
+        var owner = new Customer("John Doe", "john.doe@example.com");
+        var car1 = new Car("Tesla", "Model S", "AB12345");
+        var car2 = new Car("Tesla", "Model 3", "AB54321");
+        owner.AddCar(car1);
+        owner.AddCar(car2);
+        _customerRepository.Setup(repo => repo.GetByEmail("john.doe@example.com")).Returns(owner);
+
+        // Act
+        var result = _garageService.FindCarByOwnerEmail("john.doe@example.com");
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(owner.Cars, result);
+    }
 }
