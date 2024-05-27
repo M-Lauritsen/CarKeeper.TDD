@@ -17,7 +17,7 @@ public class GarageTests
     public void CanAddCarToGarage()
     {
         var garage = new Garage();
-        var car = new Car("Tesla", "Model 3");
+        var car = new Car("Tesla", "Model 3", "AA12345");
 
         garage.AddCar(car);
 
@@ -28,7 +28,7 @@ public class GarageTests
     public void CanRemoveCarFromGarage()
     {
         var garage = new Garage();
-        var car = new Car("Tesla", "Model 3");
+        var car = new Car("Tesla", "Model 3", "AA12345");
         garage.AddCar(car);
 
         garage.RemoveCar(car);

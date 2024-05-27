@@ -21,8 +21,8 @@ public class OwnerTests
     {
         //Arrange
         var owner = new VehicleOwner("John", "doe@mail.com");
-        var car1 = new Car("Tesla", "Model 3");
-        var car2 = new Car("Ford", "Mustang");
+        var car1 = new Car("Tesla", "Model 3", "AA12345");
+        var car2 = new Car("Ford", "Mustang", "AA12345");
 
         //Act
         owner.AddCar(car1);
