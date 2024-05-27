@@ -9,6 +9,5 @@ public interface IVehicleRepository
     void AddRange(List<Car> car);
     void CheckoutCar(Car car);
     Car GetByLicensePlate(string v);
-    void Remove(Customer customer);
     void RemoveCars(List<Car> cars);
 }
