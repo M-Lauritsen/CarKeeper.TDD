@@ -29,4 +29,18 @@ public class CarTests
         //Assert
         Assert.Equal(owner, car.Owner);
     }
+
+    [Fact]
+    public void CarOwnerIsSetWhenAddedToOwner()
+    {
+        // Arrange
+        var owner = new VehicleOwner("John", "Doe@mail.com");
+        var car = new Car("Tesla", "Model 3");
+
+        // Act
+        owner.AddCar(car);
+
+        // Assert
+        Assert.Equal(owner, car.Owner);
+    }
 }
