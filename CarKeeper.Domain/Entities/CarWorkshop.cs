@@ -1,17 +1,17 @@
-﻿using CarKeeper.Domain.Models.Owner;
-using CarKeeper.Domain.Models.Vehicles;
+﻿using CarKeeper.Domain.Entities;
+using CarKeeper.Domain.Models.Owner;
 
 namespace CarKeeper.Domain.Models.Garage;
 
 public class CarWorkshop
 {
     public List<Car> Cars { get; set; }
-    public List<VehicleOwner> Customers { get; set; }
+    public List<Customer> Customers { get; set; }
 
     public CarWorkshop()
     {
         Cars = new List<Car>();
-        Customers = new List<VehicleOwner>();
+        Customers = new List<Customer>();
     }
 
     public void AddCar(Car car)
@@ -31,7 +31,7 @@ public class CarWorkshop
         }
     }
 
-    public void AddCustomer(VehicleOwner customer)
+    public void AddCustomer(Customer customer)
     {
         if(customer is not null && !Customers.Contains(customer))
         {
@@ -39,7 +39,7 @@ public class CarWorkshop
         }
     }
 
-    public void RemoveCustomer(VehicleOwner customer)
+    public void RemoveCustomer(Customer customer)
     {
         if(customer != null && Customers.Contains(customer))
         {

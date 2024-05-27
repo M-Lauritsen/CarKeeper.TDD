@@ -1,6 +1,6 @@
-﻿using CarKeeper.Domain.Models.Garage;
+﻿using CarKeeper.Domain.Entities;
+using CarKeeper.Domain.Models.Garage;
 using CarKeeper.Domain.Models.Owner;
-using CarKeeper.Domain.Models.Vehicles;
 
 namespace CarKeeper.Test.Domain;
 
@@ -42,8 +42,8 @@ public class GarageTests
     {
         //Arrange
         var garage = new CarWorkshop();
-        var customer1 = new VehicleOwner("John", "doe@mail.com", garage);
-        var customer2 = new VehicleOwner("Doe", "John@mail.com", garage);
+        var customer1 = new Customer("John", "doe@mail.com");
+        var customer2 = new Customer("Doe", "John@mail.com");
 
         //Act
         garage.AddCustomer(customer1);
@@ -60,8 +60,8 @@ public class GarageTests
     {
         //Arrange
         var garage = new CarWorkshop();
-        var customer1 = new VehicleOwner("John", "doe@mail.com", garage);
-        var customer2 = new VehicleOwner("Doe", "John@mail.com", garage);
+        var customer1 = new Customer("John", "doe@mail.com");
+        var customer2 = new Customer("Doe", "John@mail.com");
         garage.AddCustomer(customer1);
         garage.AddCustomer(customer2);
 
@@ -79,7 +79,7 @@ public class GarageTests
     {
         //Arrange 
         var garage = new CarWorkshop();
-        var customer = new VehicleOwner("John", "doe@mail.com", garage);
+        var customer = new Customer("John", "doe@mail.com");
         garage.AddCustomer(customer);
 
         //Act
@@ -108,7 +108,7 @@ public class GarageTests
     {
         //Arrange
         var garage = new CarWorkshop();
-        var customer = new VehicleOwner("John", "doe@mail.com", garage);
+        var customer = new Customer("John", "doe@mail.com");
         var car = new Car("Tesla", "Model 3", "AA12345");
         customer.AddCar(car);
 
