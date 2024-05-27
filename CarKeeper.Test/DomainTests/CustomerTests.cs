@@ -1,17 +1,16 @@
-﻿using CarKeeper.Domain.Models.Garage;
+﻿using CarKeeper.Domain.Entities;
+using CarKeeper.Domain.Models.Garage;
 using CarKeeper.Domain.Models.Owner;
-using CarKeeper.Domain.Models.Vehicles;
 
 namespace CarKeeper.Test.Domain;
 
-public class OwnerTests
+public class CustomerTests
 {
     [Fact]
     public void CanCreateOwner()
     {
         //Arrange and Act
-        var garage = new CarWorkshop();
-        var owner = new VehicleOwner("John Doe", "John.doe@example.com", garage);
+        var owner = new Customer("John Doe", "John.doe@example.com");
 
         //Assert
         Assert.Equal("John Doe", owner.Name);
@@ -22,8 +21,7 @@ public class OwnerTests
     public void OwnerCanOwnMultipleCars()
     {
         //Arrange
-        var garage = new CarWorkshop();
-        var owner = new VehicleOwner("John", "doe@mail.com", garage);
+        var owner = new Customer("John", "doe@mail.com");
         var car1 = new Car("Tesla", "Model 3", "AA12345");
         var car2 = new Car("Ford", "Mustang", "AA12345");
 
