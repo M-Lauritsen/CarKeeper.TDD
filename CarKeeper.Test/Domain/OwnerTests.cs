@@ -1,4 +1,5 @@
-﻿using CarKeeper.Domain.Models.Owner;
+﻿using CarKeeper.Domain.Models.Garage;
+using CarKeeper.Domain.Models.Owner;
 using CarKeeper.Domain.Models.Vehicles;
 
 namespace CarKeeper.Test.Domain;
@@ -9,7 +10,8 @@ public class OwnerTests
     public void CanCreateOwner()
     {
         //Arrange and Act
-        var owner = new VehicleOwner("John Doe", "John.doe@example.com");
+        var garage = new CarWorkshop();
+        var owner = new VehicleOwner("John Doe", "John.doe@example.com", garage);
 
         //Assert
         Assert.Equal("John Doe", owner.Name);
@@ -20,7 +22,8 @@ public class OwnerTests
     public void OwnerCanOwnMultipleCars()
     {
         //Arrange
-        var owner = new VehicleOwner("John", "doe@mail.com");
+        var garage = new CarWorkshop();
+        var owner = new VehicleOwner("John", "doe@mail.com", garage);
         var car1 = new Car("Tesla", "Model 3", "AA12345");
         var car2 = new Car("Ford", "Mustang", "AA12345");
 

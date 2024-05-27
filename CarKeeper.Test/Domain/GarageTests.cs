@@ -9,26 +9,26 @@ public class GarageTests
     [Fact]
     public void CanCreateGarage()
     {
-        var garage = new Garage();
+        var garage = new CarWorkshop();
 
         Assert.NotNull(garage);
     }
 
     [Fact]
-    public void CanAddCarToGarage()
+    public void CantAddCarToGarageWithoutOwner()
     {
-        var garage = new Garage();
+        var garage = new CarWorkshop();
         var car = new Car("Tesla", "Model 3", "AA12345");
 
         garage.AddCar(car);
 
-        Assert.Contains(car, garage.Cars);
+        Assert.DoesNotContain(car, garage.Cars);
     }
 
     [Fact]
     public void CanRemoveCarFromGarage()
     {
-        var garage = new Garage();
+        var garage = new CarWorkshop();
         var car = new Car("Tesla", "Model 3", "AA12345");
         garage.AddCar(car);
 
@@ -41,9 +41,9 @@ public class GarageTests
     public void CanAddCustomersToGarage()
     {
         //Arrange
-        var garage = new Garage();
-        var customer1 = new VehicleOwner("John", "doe@mail.com");
-        var customer2 = new VehicleOwner("Doe", "John@mail.com");
+        var garage = new CarWorkshop();
+        var customer1 = new VehicleOwner("John", "doe@mail.com", garage);
+        var customer2 = new VehicleOwner("Doe", "John@mail.com", garage);
 
         //Act
         garage.AddCustomer(customer1);
@@ -59,9 +59,9 @@ public class GarageTests
     public void CanRemoveCustomerFromGarage()
     {
         //Arrange
-        var garage = new Garage();
-        var customer1 = new VehicleOwner("John", "doe@mail.com");
-        var customer2 = new VehicleOwner("Doe", "John@mail.com");
+        var garage = new CarWorkshop();
+        var customer1 = new VehicleOwner("John", "doe@mail.com", garage);
+        var customer2 = new VehicleOwner("Doe", "John@mail.com", garage);
         garage.AddCustomer(customer1);
         garage.AddCustomer(customer2);
 
@@ -78,8 +78,8 @@ public class GarageTests
     public void CantAddSameCustomerTwice()
     {
         //Arrange 
-        var garage = new Garage();
-        var customer = new VehicleOwner("John", "doe@mail.com");
+        var garage = new CarWorkshop();
+        var customer = new VehicleOwner("John", "doe@mail.com", garage);
         garage.AddCustomer(customer);
 
         //Act
@@ -94,7 +94,7 @@ public class GarageTests
     public void CannotAddNullCustomer()
     {
         //Arrange
-        var garage = new Garage();
+        var garage = new CarWorkshop();
 
         //Act
         garage.AddCustomer(null);

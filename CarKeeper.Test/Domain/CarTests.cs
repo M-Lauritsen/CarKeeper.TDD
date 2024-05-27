@@ -1,4 +1,5 @@
-﻿using CarKeeper.Domain.Models.Owner;
+﻿using CarKeeper.Domain.Models.Garage;
+using CarKeeper.Domain.Models.Owner;
 using CarKeeper.Domain.Models.Vehicles;
 
 namespace CarKeeper.Test.Domain;
@@ -21,8 +22,9 @@ public class CarTests
     public void CanAddOwnerToCar()
     {
         //Arrange 
+        var garage = new CarWorkshop();
+        var owner = new VehicleOwner("John", "john@mail.com", garage);
         var car = new Car("Tesla", "Model 3", "AA12345");
-        var owner = new VehicleOwner("John", "john@mail.com");
 
         //Act
         car.Owner = owner;
@@ -35,7 +37,8 @@ public class CarTests
     public void CarOwnerIsSetWhenAddedToOwner()
     {
         // Arrange
-        var owner = new VehicleOwner("John", "Doe@mail.com");
+        var garage = new CarWorkshop();
+        var owner = new VehicleOwner("John", "Doe@mail.com", garage);
         var car = new Car("Tesla", "Model 3", "AA12345");
 
         // Act

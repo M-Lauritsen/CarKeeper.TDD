@@ -3,12 +3,12 @@ using CarKeeper.Domain.Models.Vehicles;
 
 namespace CarKeeper.Domain.Models.Garage;
 
-public class Garage
+public class CarWorkshop
 {
     public List<Car> Cars { get; set; }
     public List<VehicleOwner> Customers { get; set; }
 
-    public Garage()
+    public CarWorkshop()
     {
         Cars = new List<Car>();
         Customers = new List<VehicleOwner>();
@@ -16,7 +16,11 @@ public class Garage
 
     public void AddCar(Car car)
     {
-        Cars.Add(car);
+        if (car is not null && car.Owner != null) 
+        {
+            Cars.Add(car);
+            AddCustomer(car.Owner);
+        }
     }
 
     public void RemoveCar(Car car)
@@ -34,6 +38,13 @@ public class Garage
 
     public void RemoveCustomer(VehicleOwner customer)
     {
-        Customers.Remove(customer);
+        if(customer != null && Customers.Contains(customer))
+        {
+            foreach (var car in customer.Cars) 
+            {
+                Cars.Remove(car);
+            }
+            Customers.Remove(customer);
+        }
     }
 }
