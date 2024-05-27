@@ -102,4 +102,20 @@ public class GarageTests
         //Assert
         Assert.Empty(garage.Customers);
     }
+
+    [Fact]
+    public void RemovingCustomerRemovesTheirCarsFromGarage()
+    {
+        //Arrange
+        var garage = new CarWorkshop();
+        var customer = new VehicleOwner("John", "doe@mail.com", garage);
+        var car = new Car("Tesla", "Model 3", "AA12345");
+        customer.AddCar(car);
+
+        //Act
+        garage.RemoveCustomer(customer);
+
+        //Assert
+        Assert.DoesNotContain(car, garage.Cars);
+    }
 }

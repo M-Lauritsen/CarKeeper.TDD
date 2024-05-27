@@ -25,6 +25,11 @@ public class VehicleOwner
             car.Owner = this;
         }
 
+        if (!_garage.Customers.Contains(this))
+        {
+            _garage.AddCustomer(this);
+        }
+
         Cars.Add(car);
         _garage.Cars.Add(car);
     }

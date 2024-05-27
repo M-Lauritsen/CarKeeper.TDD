@@ -25,7 +25,10 @@ public class CarWorkshop
 
     public void RemoveCar(Car car)
     {
-        Cars.Remove(car);
+        if (car is not null)
+        {
+            Cars.Remove(car);
+        }
     }
 
     public void AddCustomer(VehicleOwner customer)
