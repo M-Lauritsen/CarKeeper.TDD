@@ -75,11 +75,6 @@ public class GarageService(IVehicleRepository vehicleRepository, ICustomerReposi
         }
     }
 
-    public void RemoveCustomer(Customer customer)
-    {
-        throw new NotImplementedException();
-    }
-
     public void UpdateCustomer(Customer customer)
     {
         throw new NotImplementedException();
