@@ -16,9 +16,20 @@ public class CustomerRepository : ICustomerRepository
         _customers.Remove(customer);
     }
 
+    public List<Customer> GetAllCustomers()
+    {
+        return _customers;
+    }
+
     public Customer GetByEmail(string v)
     {
         var customer = _customers.FirstOrDefault(x => x.Email == v);
+        return customer;
+    }
+
+    public Customer GetUserWithCarsByEmail(string email)
+    {
+        var customer = _customers.FirstOrDefault(x => x.Email == email);
         return customer;
     }
 }

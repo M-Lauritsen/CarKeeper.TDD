@@ -22,10 +22,20 @@ public class CarRepository : IVehicleRepository
         _cars.Remove(car);
     }
 
+    public List<Car> GetAllCars()
+    {
+        return _cars.ToList();
+    }
+
     public Car GetByLicensePlate(string v)
     {
         var car = _cars.Find(c => c.LicensePlate == v);
         return car;
+    }
+
+    public bool LicensePlateExists(Car car)
+    {
+        return _cars.Exists(c => c.LicensePlate.Equals(car.LicensePlate));
     }
 
     public void RemoveCars(List<Car> cars)

@@ -6,5 +6,7 @@ public interface ICustomerRepository
 {
     void Add(Customer customer);
     void DeleteCustomer(Customer customer);
+    List<Customer> GetAllCustomers();
     Customer GetByEmail(string v);
+    Customer GetUserWithCarsByEmail(string email);
 }

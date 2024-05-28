@@ -9,6 +9,6 @@ public interface IGarageService
     void UpdateCustomer(Customer customer);
     void DeleteCustomer(Customer customer);
     void AddVehicleToCustomer(Car car, Customer customer);
-    IEnumerable<Car> GetAllCars();
-    IEnumerable<Customer> GetAllCustomers();
+    List<Car> GetAllCars();
+    List<Customer> GetAllCustomers();
 }

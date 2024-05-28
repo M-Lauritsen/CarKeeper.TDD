@@ -50,14 +50,29 @@ public class GarageService(IVehicleRepository vehicleRepository, ICustomerReposi
         return customer.Cars;
     }
 
-    public IEnumerable<Car> GetAllCars()
+    public Customer FindOwnerAndCarsByEmail(string email)
     {
-        throw new NotImplementedException();
+        var customer = customerRepository.GetUserWithCarsByEmail(email);
+        return customer;
     }
 
-    public IEnumerable<Customer> GetAllCustomers()
+    public List<Car> GetAllCars()
     {
-        throw new NotImplementedException();
+        var cars = vehicleRepository.GetAllCars();
+        return cars;
+    }
+
+    public List<Customer> GetAllCustomers()
+    {
+        return customerRepository.GetAllCustomers();
+    }
+
+    public void RegisterLicensePlate(Car car)
+    {
+        if (vehicleRepository.LicensePlateExists(car)) 
+        {
+            throw new InvalidOperationException("License plate already exists");
+        }
     }
 
     public void RemoveCustomer(Customer customer)
