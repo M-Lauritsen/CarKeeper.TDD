@@ -67,6 +67,11 @@ public class GarageService(IVehicleRepository vehicleRepository, ICustomerReposi
         return customerRepository.GetAllCustomers();
     }
 
+    public Customer GetCustomerByEmail(string email)
+    {
+        return customerRepository.GetByEmail(email);
+    }
+
     public void RegisterLicensePlate(Car car)
     {
         if (vehicleRepository.LicensePlateExists(car)) 
@@ -77,6 +82,11 @@ public class GarageService(IVehicleRepository vehicleRepository, ICustomerReposi
 
     public void UpdateCustomer(Customer customer)
     {
-        throw new NotImplementedException();
+        var currentCustomer = customerRepository.GetByEmail(customer.Email);
+        if (currentCustomer != null)
+        {
+            currentCustomer.Name = customer.Name;
+            customerRepository.UpdateCustomer(currentCustomer);
+        }
     }
 }

@@ -246,4 +246,45 @@ public class GarageServiceTests
         Assert.Contains(owner, result);
         Assert.Contains(owner2, result);
     }
+
+    [Fact]
+    public void UpdateCustomerInformationInGarage()
+    {
+        // Arrange
+        var customer = new Customer("John", "john@example.com");
+        var updatedCustomer = new Customer("Doe", "john@example.com");
+
+        _customerRepository.Setup(repo => repo.GetByEmail(customer.Email)).Returns(customer);
+        _customerRepository.Setup(repo => repo.UpdateCustomer(It.IsAny<Customer>()));
+
+        // Act
+        _garageService.UpdateCustomer(updatedCustomer);
+        var newCustomer = _garageService.GetCustomerByEmail(updatedCustomer.Email);
+
+        // Assert
+        _customerRepository.Verify(repo => repo.UpdateCustomer(It.Is<Customer>(c => c.Email == updatedCustomer.Email && c.Name == updatedCustomer.Name)), Times.Once);
+        Assert.NotNull(newCustomer);
+        Assert.Equal(newCustomer.Name, updatedCustomer.Name);
+    }
+
+    [Fact]
+    public void UpdateUserName_ShouldNotUpdateName_WhenEmailDoesNotExist()
+    {
+        // Arrange
+        var customer = new Customer("John", "john@example.com");
+        var updatedCustomer = new Customer("Doe", "jane@example.com");
+
+        _customerRepository.Setup(repo => repo.GetByEmail(customer.Email)).Returns(customer);
+        _customerRepository.Setup(repo => repo.UpdateCustomer(It.IsAny<Customer>()));
+
+        // Act
+        _garageService.UpdateCustomer(updatedCustomer);
+        var newCustomer = _garageService.GetCustomerByEmail(updatedCustomer.Email);
+
+        // Assert
+        _customerRepository.Verify(repo => repo.UpdateCustomer(It.Is<Customer>(c => c.Email == updatedCustomer.Email && c.Name == updatedCustomer.Name)), Times.Never);
+
+        // Assert
+        Assert.Null(newCustomer);
+    }
 }

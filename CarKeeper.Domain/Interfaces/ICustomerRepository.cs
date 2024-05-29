@@ -9,4 +9,5 @@ public interface ICustomerRepository
     List<Customer> GetAllCustomers();
     Customer GetByEmail(string v);
     Customer GetUserWithCarsByEmail(string email);
+    void UpdateCustomer(Customer customer);
 }

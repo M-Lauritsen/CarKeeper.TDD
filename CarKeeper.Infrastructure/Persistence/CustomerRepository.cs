@@ -32,4 +32,13 @@ public class CustomerRepository : ICustomerRepository
         var customer = _customers.FirstOrDefault(x => x.Email == email);
         return customer;
     }
+
+    public void UpdateCustomer(Customer customer)
+    {
+        var currentCustomer = _customers.FirstOrDefault(c => c.Email == customer.Email);
+        if (currentCustomer != null) 
+        {
+            currentCustomer.Name = customer.Name;
+        }
+    }
 }
